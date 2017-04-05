@@ -101,7 +101,7 @@ describe("How Strings work and the methods available", function () {
             /* This works because the backslash key will escape the empty space.
              * It will also add whitespace as part of the string
              * It is not recommended to do this.
-             * The second string is very fragile, adding one space will make the test fail.
+             * The second string is very fragile, adding one space will make the public fail.
              */
         expect(string).toEqual("One and two three and four");
         expect(secondString).toEqual("One and two                 three and four");

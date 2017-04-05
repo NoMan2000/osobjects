@@ -4,16 +4,16 @@
     var app = express();
     var port = process.env.PORT || 5000;
     app.use(require('express-markdown')({
-        directory: __dirname + '/public'
+        directory: __dirname + '/'
     }));
 
     /**
      * Use static files
      */
-    app.use(express.static('./public'));
+    app.use(express.static('./'));
 
     app.get('/', function (req, res) {
-        res.render('index');
+        res.sendFile('public/index.html');
     });
 
     app.listen(port, function (err) {

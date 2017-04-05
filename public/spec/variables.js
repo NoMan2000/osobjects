@@ -7,7 +7,7 @@ describe("A description of allowed and then good variable names.", function() {
             expect(basic).not.toBeUndefined();
         });
         /**
-         * This test cannot actually be demonstrated.  SyntaxErrors are compile-time errors.
+         * This public cannot actually be demonstrated.  SyntaxErrors are compile-time errors.
          * Only run-time errors can be caught in a try-catch block.  To fix this,
          * running eval will turn compile-time code into run-time code.  eval can cause security problems and
          * is computationally expensive, so only in rare cases should it be used in production code.
