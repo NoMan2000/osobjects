@@ -35,7 +35,7 @@ class Person {
     }
 
     get firstname() {
-        return this._firstname;
+        return this._firstname.trim();
     }
 
     set firstname(value) {
@@ -46,7 +46,7 @@ class Person {
     }
 
     get lastname() {
-        return this._lastname;
+        return this._lastname.trim();
     }
 
     set lastname(value) {
@@ -57,14 +57,14 @@ class Person {
     }
 
     fullname() {
-        return `${this.firstname} ${this.lastname}`;
+        return `${this.firstname} ${this.lastname}`.trim();
     }
 
     fullUpper() {
         return this.fullname().toLocaleUpperCase();
     }
 
-    fullLesser() {
+    fullLower() {
         return this.fullname().toLocaleLowerCase();
     }
 

@@ -27,54 +27,34 @@ describe("A demonstration of how classes and object work", () => {
             expect(samSmith.fullname()).toEqual('Sam Smith');
         });
 
-        it("Can capitalize the entire name", function () {
+        it("Can capitalize the entire name", () => {
             let jackSmith = new Person('jack', 'smith');
             expect(jackSmith.fullUpper()).toEqual("JACK SMITH");
         });
 
-        it("Can use the Constructor Syntax", function () {
-            /**
-             *
-             * @param {String} firstName
-             * @param {String} lastName
-             * @constructor
-             */
-            var PersonCreator = function (firstName, lastName) {
-                this.firstName = firstName || "John";
-                this.lastName = lastName || "Doe";
-                this.greeting = function () {
-                    return "Hello " + this.firstName + " " + this.lastName;
-                }
-            };
-            var johnDoe = new PersonCreator();
-            expect(johnDoe.greeting()).toEqual("Hello John Doe");
-            johnDoe.firstName = "Bill";
-            expect(johnDoe.greeting()).toEqual("Hello Bill Doe");
+        it("Can lowercase the entire name", () => {
+            let jackSmith = new Person('JACK', 'SMITH');
+            expect(jackSmith.fullLower()).toEqual('jack smith');
         });
-        /**
-         * This is the most verbose way to create a new object.  The advantage is you can define special properties.
-         * The downside is that the verbosity of it makes it very difficult to read.
-         */
-        it("Can use the Object.create method to create an object", function () {
-            var johnDoe = Object.create(null, {
-                firstName: {
-                    value: "John",
-                    writable: true
-                },
-                lastName: {
-                    value: "Doe",
-                    writable: true
-                },
-                greeting: {
-                    value: function () {
-                        return "Hello " + this.firstName + " " + this.lastName;
-                    }
-                }
-            });
-            expect(johnDoe.greeting()).toEqual("Hello John Doe");
-            johnDoe.firstName = "Bill";
-            expect(johnDoe.greeting()).toEqual("Hello Bill Doe");
 
+        it("Can set the first name and last name after the fact", () => {
+            let johnDoe = new Person();
+            johnDoe.firstname = 'john';
+            johnDoe.lastname = 'doe';
+            expect(johnDoe.fullname()).toEqual("John Doe");
         });
+
+        it("Will throw an Error if the firstname is not correct", () => {
+            expect( () => {
+                let z = new Person(10);
+            }).toThrow();
+        });
+
+        it("Will throw an Error if the lastname is not correct", () => {
+            expect( () => {
+                let z = new Person('john', 10);
+            }).toThrow();
+        });
+
     });
 });

@@ -4,7 +4,7 @@
   "description": "An Introduction to JavaScript Using Behavior Driven-Design",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "istanbul cover --include-all-sources node_modules/.bin/jasmine public/spec/**/*.js",
     "start": "nodemon app.js --exec babel-node --presets es2015,stage-2"
   },
   "keywords": [
@@ -20,6 +20,8 @@
     "babel-cli": "^6.24.0",
     "babel-preset-es2015": "^6.24.0",
     "babel-preset-stage-2": "^6.22.0",
+    "istanbul": "^0.4.5",
+    "jasmine": "^2.5.3",
     "nodemon": "^1.11.0"
   },
   "dependencies": {
