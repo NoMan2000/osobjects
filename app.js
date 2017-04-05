@@ -13,7 +13,7 @@
     app.use(express.static('./'));
 
     app.get('/', function (req, res) {
-        res.sendFile('public/index.html');
+        res.sendFile(__dirname + '/public/index.html');
     });
 
     app.listen(port, function (err) {

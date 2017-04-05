@@ -119,12 +119,6 @@ Many languages do not have strings as a primitive value.  Rather, they implement
 
 This is why `var x = new String("string");` will look strange in the console, it's showing the array of characters.
 
-# Jasmine syntax
-
-- `.toEqual` is equivalent to `==`
-- `.toBe` is equivalent to `===`
-- `.not` is equivalent to `!`
-
 # Whitespace Insensitive
 
 These two lines of code are equivalent:
