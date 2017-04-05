@@ -44,38 +44,6 @@ var z = !(logged);
 
 Statements are the evaluation of all the expressions, terminated by the semi-colon or a new line if you are using Automatic Semi-Colon Insertion.
 
-
-## Dealing with Types
-
-Note that this is pseudo-code to demonstrate a point.  Python uses what's known as `duck-typing` to understand a value passed in.  Unlike Java, that requires an explicit declaration:
-
-    public String function getGraduationDateToString(Calendar yourGraduationDate)
-    {
-      String gradString = String.valueOf(yourGraduation.YEAR);
-      return gradString;
-    }
-
-Notice we have to specify that we want the method to return a String, and that we expect an object of type calendar as an argument, and our inner variable of gradString has to be specified that it too will be a string.
-
-Python will not check what type of object gets passed in.  There are ways to create `Interfaces` in Python, but they are generally rare.  Equivalent Python:
-
-    def get_graduation_date_to_string(yourGraduation):
-        return str(yourGraduation.YEAR)
-
-So long as a method exists or property exists, Python will invoke it.  The term `duck-typing` means so long as whatever is passed to the method has the method or property the function is invoking, Python will not raise an error.
-
-We do not have to specify that we are expecting an object of type Calendar, but we do have to explicitly cast it as a string using `str` to get the correct value back.
-
-If there is no `YEAR` property on the object passed in, Python will throw an error, or raise an exception to use Python's terminology.  The exception will show `object has no attribute 'YEAR'`
-
-The equivalent JavaScript:
-
-    function getGraduationDateToString(yourGraduation) {
-      return String(yourGraduation.YEAR);
-    }
-
-JavaScript will not throw an error and will return `"undefined"` as a string.
-
 ## The Window object
 
 In the browser, trying to create a variable without using the keyword `var` attaches a variable to the global object.  The `use strict` statement is a way of turning that off, and NodeJS does this by default.
@@ -110,31 +78,44 @@ Generally, it is recommended to use `function expressions`, since they make the 
 
 Any variables declared with `var variable = y`, no matter where they are put in the code, will be `hoisted` to the top of the current function scope.  If they are used before the definition is found, the result will be `undefined`.
 
-# Strings and character arrays.
+# JavaScript Objects
 
-Many languages do not have strings as a primitive value.  Rather, they implement strings as an array of characters.  This is what JavaScript does, and you can test it by doing this:
+JavaScript is composed of two types of objects.
+  
+  1. Built-in objects are shared across all versions of JavaScript like Object, Array, Boolean, Number, RegExp, etc.
+  
+  2. The Host Objects are unique to each environment JavaScript is running within.  In the case of the browser, this is window, document, console, etc.  Node and Electron have different host objects than the browser.
+  
+  Since this is meant to demonstrate JavaScript at its most common and simplest, we will be using the Browser to demonstrate JavaScript.  
 
-    var x = "string";
-    x[0]; // Will output 's'
+## Variables.  
 
-This is why `var x = new String("string");` will look strange in the console, it's showing the array of characters.
+* A variable is literally something which can change or vary.  JavaScript in ES5 supports var as the keyword for declaring a variable.  In ES6, let is supported for block-scoped variables and const is supported for constants.
+* Variables cannot begin with a number, but can use one anywhere else.
+* Can use special characters and even Unicode valid characters, but you will be cursed by every other programmer after you.
+* The $ sign and the _ are valid anywhere in the variable names, but when used in the beginning, they tend to have special meaning.
 
-# Whitespace Insensitive
+### Common Variable Idioms
 
-These two lines of code are equivalent:
+* Functions with a constructor, those that require the new keyword, are generally capitalized.
+* Everything else is generally lower-cased for the first word.
+* There are two common conventions, snake-casing and camel-casing.  Snake casing looks like this `var my_new_variable` whereas camel casing looks like this `var myNewVariable`.  Camel casing is generally used because that's how the DOM expects JavaScript variables to work.
 
-    var x = function () {
-      return "Some value";
-    }
+## Primitives vs. Complex Types
 
-    var x=function(){return "some value";}
+1. JavaScript has what it calls Primitives, but they are not true primitives.  In programming, a true primitive has no methods or properties on it.  The closest thing JavaScript has to a true primitive is `NULL` AND `UNDEFINED`, which are known as bottom-values.
+2. `UNDEFINED` means that a variable has been declared, but has not had any value assigned to it.  `var x;` would declare that x exists, but it would not give it any value.  The value would be undefined.  `y;` would be undefined, since there is no `var` declaration before it.  This will throw an error, so you have to check this by using the `typeof` language construct.  `typeof thing` will show `undefined`.  You must assign null for it to show up as a value.
+3. All JavaScript functions without an explicitly declared return value will return `undefined` as well.
+4. A primitive type will not be strictly equal to a string created with a Constructor.  Also, the typeof check will fail for a string created with a constructor.  It is also unnecessarily verbose.  For this reason, it is advised to avoid using the Constructor version of creating primitive types.
 
-Some languages like Python use whitespace for significant markers.  Because JavaScript can strip white space and not change the meaning, there are `minifiers` that will strip out everything they can to make the code smaller, since JavaScript on the web has to be downloaded, and the smaller the download size the faster the page will load.
+## Objects
 
-# Escape Sequence
-
-- `\n` means "New Line."
-- `\r` means "carriage return"
-- `\t` means 'tab key'
-
-There are a few others, but you may occasionally come across these in code.
+- Objects are key-value stores.  The key is the name used to access a value.  The value is what is stored.
+- Properties of an object are values.  Methods of an object are functions.
+- Object keys can be accessed with one of two notations, the dot notation or the square bracket notation.
+- The dot notation is more commonly used, but it can only access string properties.
+ 
+        object.dotnotation
+        object[squareNotation]
+ 
+- The square notation can access dynamic properties or properties with non-standard names.  It is highly recommended that you do not attempt to create non-standard variable names.
