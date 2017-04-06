@@ -1,6 +1,6 @@
-describe("A demonstration of how classes and object work", () => {
+describe("A demonstration of how extension works", () => {
 
-    describe("Can create basic ", () => {
+    describe("Doctor Class ", () => {
 
         it("Can create a new object", () => {
             let obj = new Person();
