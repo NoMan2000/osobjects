@@ -119,3 +119,14 @@ JavaScript is composed of two types of objects.
         object[squareNotation]
  
 - The square notation can access dynamic properties or properties with non-standard names.  It is highly recommended that you do not attempt to create non-standard variable names.
+
+## Classes
+
+- Classes feature a few key ideas:  `Abstraction`, `Polymorphism`, `Inheritance`, and `Encapsulation`.
+
+- In our example, Abstraction is achieved by having multiple classes derive from one base class, the `Person` class.
+- Variations on the Person class are achieved by the `Doctor` and `PinballPlayer` class.
+
+- `Polymorphism` is a fancy name that means that a child class can overwrite the parent's class methods.  For example, the `Doctor` class overwrites the parent's `fullname` method by appending `Dr.` to the front of it.
+- `Inheritance` means that child classes will inherit methods and properties from the parent class.
+- `Encapsulation` is perhaps one of the most important.  This means that classes will not leak out to other methods/functions to manipulate.
